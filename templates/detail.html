@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show text-center" role="alert">
+
+        <strong>{{ message }}</strong>
+
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% for item in data %}
+    <div class="container h-100" style="margin-top: 5px;">
+        <div class="row">
+            <div class="col-md-5">
+                <video width="100%" height="100%" controls>
+                    <source src="{{ url }}{{ item.videoAns }}" type="video/webm">
+                </video>
+            </div>
+            <div class="col-md-7">
+                <row>
+                    <h5>User Name: {{ item.user_name }}</h5>
+                    <p> Question : {{ item.question_id.quostion }}</p>
+                    <p> Correct Answer is : {{ item.question_id.correctanswer }}</p>
+                    <h4>Answer from video which is submitted.</h4>
+                    {% if item.trasnscript %}
+                    <p class="text-wrap text-break">"{{ item.trasnscript }}"</p>
+                    {% else %}
+                    <p>"Trasnscript is not yet genereted"</p>
+                    <a href="{% url 'generate_transcript' ansId=item.ansId %}"
+                        class="btn btn-primary btn-block">Generate
+                        Trascript</a>
+                    {% endif %}
+                </row>
+                <hr>
+                <row>
+                <a href="{% url 'generate_result' ansId=item.ansId %}" class="btn btn-primary btn-block">Generate
+                    result</a>
+                    <div class="card-header" style="margin-top: 5px;text-align: center;">
+                        Accuracy of Answer is: {{ item.answer_accurecy }} %
+                        Featured
+                    </div>
+                </row>
+
+            </div>
+        </div>
+
+    </div>
+    {% endfor %}
+</section>
+
+
+
+
+{% endblock %}
