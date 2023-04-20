@@ -163,8 +163,6 @@ def generate_result(request,ansId):
 		print(s2)
 	return HttpResponseRedirect(ref_url)
 
-@staff_member_required
-@login_required(login_url='login')
 def testresultfunc(request):
 	if request.method == 'GET':
 		s1 = request.GET.get('s1')

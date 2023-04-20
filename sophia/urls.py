@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path , include , re_path
 from accounts import urls as accurl
 from accounts.views import home
+from administration.views import testresult
 from assessments import urls as assurl
 from administration import urls as adminurl
 from django.conf.urls.static import static
@@ -30,6 +31,7 @@ admin.site.index_title = "Welcome to Sophia assessment Portal"
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',home,name='home'),
+    path('testcode/',testresult,name='testresult'),
     path('user/', include(accurl)),
     path('assessments/', include(assurl)),
     path('administration/', include(adminurl)),
