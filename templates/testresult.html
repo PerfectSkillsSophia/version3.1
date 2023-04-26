@@ -16,8 +16,38 @@
         {% endfor %}
         {% endif %}
 <h3>Context base analysis.</h3>
-<h4>Add statements to see accuracy based on context of statements.</h4><hr>
-        <form action="{% url 'testresultfunc'  %}">
+<h4>Add statements to see accuracy based on context of statements.</h4>
+<hr>
+<h3>Test Version 2</h3>
+        <form action="{% url 'testresultfunc2'  %}">
+            <div class="form-group">
+                <input class="form-control" name="s3" type="s3" placeholder="enter statement 1"><br>
+                <input class="form-control" name="s4" type="s4" placeholder="enter statement 2">
+            </div>
+            <div class="form-group"><button class="btn btn-primary btn-block my-2 my-sm-0" type="submit">result</button>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-md-6">
+                {% if s3 %}
+                <h4 class="card-header" >Statement 1 :{{ s3 }}</h4>
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                {% if s4 %}
+                <h4 class="card-header" > Statement 2 :{{ s4 }}</h4>
+                {% endif %}
+            </div>
+        </div>
+        {% if s3 %}
+        <div class="card-header" style="margin-top: 5px;text-align: center;">  
+
+            Accuracy of Answer is: {{ accuracy2 }} %     
+        </div>
+        {% endif %}
+        <hr>
+        <h3>Test Version 1</h3>
+        <form action="{% url 'testresultfunc1'  %}">
             <div class="form-group">
                 <input class="form-control" name="s1" type="s1" placeholder="enter statement 1"><br>
                 <input class="form-control" name="s2" type="s2" placeholder="enter statement 2">
@@ -25,8 +55,6 @@
             <div class="form-group"><button class="btn btn-primary btn-block my-2 my-sm-0" type="submit">result</button>
             </div>
         </form>
-
-
 
         <div class="row">
             <div class="col-md-6">
@@ -40,18 +68,17 @@
                 {% endif %}
             </div>
         </div>
-
+        {% if accuracy1 %}
         <div class="card-header" style="margin-top: 5px;text-align: center;">
 
-            {% if accuracy %}
-            Accuracy of Answer is: {{ accuracy }} % Featured
-            {% endif %}
+            
+            Accuracy of Answer is: {{ accuracy1 }} %
+            
         </div>
+        {% endif %}
+        <hr>
 
-
-
-
-
+        
 
     </div>
 
