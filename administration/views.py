@@ -163,24 +163,22 @@ def generate_result(request,ansId):
 		print(s2)
 	return HttpResponseRedirect(ref_url)
 
-def testresultfunc1(request):
+
+def testresultfunc(request):
 	if request.method == 'GET':
 		s1 = request.GET.get('s1')
 		s2 = request.GET.get('s2')
 		accuracy1 = FindAcc(s1,s2)
-		print(s1,s2)
+		accuracy2 = FindAcc2(s1,s2)
+		accuracy3 = similarity(s1,s2)
+		print(s1)
+		print(s2)
 		print(accuracy1)
-	return render(request, 'testresult.html',{'accuracy1':accuracy1,'s1':s1,'s2':s2})
-
-
-def testresultfunc2(request):
-	if request.method == 'GET':
-		s3 = request.GET.get('s3')
-		s4 = request.GET.get('s4')
-		accuracy2 = FindAcc2(s3,s4)
-		print("s3 is :",s3,"s4 is :",s4)
-		print("acc2 is :",accuracy2)
-	return render(request, 'testresult.html',{'accuracy2':accuracy2,'s3':s3,'s4':s4})
+		print(accuracy2)
+		print(accuracy3)
+	context = {'accuracy1':accuracy1, 'accuracy2':accuracy2,'accuracy3':round(accuracy3, 2), 's1':s1, 's2':s2}
+	return render(request, 'testresult.html', context)
+		
 
 def testresult(request):
 
