@@ -3,7 +3,27 @@
 
 {% block content %}
 <div class="container">
-    <h1>Add Questions.</h1>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var backButton = document.querySelector('#back-button');
+            backButton.addEventListener('click', function(event) {
+                event.preventDefault();
+                window.history.back();
+            });
+        });
+    </script>
+    <br>
+        <div class="row">
+          <div class="col-md-5">
+            <h1>AAdd Questions.</h1>
+          </div>
+          <div class="col-md-4">
+          </div>
+          <div class="col-md-3">
+            <a class="btn btn-primary btn-lg" href="#" id="back-button">Back</a>
+            <hr>
+          </div>
+        </div>
     <form action="{% url 'Addquestion'  %}">
         <div class="form-group">
             <input class="form-control" name="que" type="que" placeholder="Write Question! "><br>

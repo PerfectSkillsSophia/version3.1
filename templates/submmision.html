@@ -2,7 +2,30 @@
 {% load static %}
 
 {% block content %}
-
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var backButton = document.querySelector('#back-button');
+        backButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            window.history.back();
+        });
+    });
+</script>
+<br>
+<div class="container">
+    <div class="row">
+      <div class="col-md-5">
+        <h1>All Submissions.</h1>
+      </div>
+      <div class="col-md-4">
+      </div>
+      <div class="col-md-3">
+        <a class="btn btn-primary btn-lg" href="#" id="back-button">Back</a>
+        <hr>
+      </div>
+    </div>
+    <hr>
+</div>
 <div class="container" style="margin-top: 5px;">
     <div class="row">
         {% for item in all_data %}

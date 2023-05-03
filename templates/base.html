@@ -14,6 +14,34 @@
   <title>Assessment_Tool</title>
   {% load static %}
 </head>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      var backButton = document.querySelector('#back-button');
+      backButton.addEventListener('click', function(event) {
+          event.preventDefault();
+          window.history.back();
+      });
+  });
+</script>
+<!-- backbutton -->
+<script>
+  window.addEventListener('pageshow', function(event) {
+    // If the persisted property is false or undefined, it means the page is being loaded from cache
+    if (event.persisted) {
+      // Force a full page reload
+      window.location.reload();
+    }
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var backButton = document.querySelector('#back-button');
+    backButton.addEventListener('click', function () {
+      // Force a full page reload
+      window.location.reload();
+    });
+  });
+</script>
 {% if user.is_authenticated %}
 <!-- Just an image -->
 {% if request.user.is_staff %}
@@ -34,9 +62,12 @@
   <a class="navbar-brand" href="{{ request.path }}">
     <img src="{% static 'image/ps.png' %}" width="150" height="45" alt="">
   </a>
-  <h1 style=" color:rgb(255, 255, 255);">Hi <span id="username"
-      style="text-transform:capitalize; margin-right:200px;">{{ user.first_name }} </span></h1>
-  </h1>
+  <div class="form-inline" style="margin: 5px 5px 5px 5px 5px;">
+    <h1 style=" color:rgb(255, 255, 255);">Hi <span id="username"
+      style="text-transform:capitalize; margin-right:10px;">{{ user.first_name }} </span></h1>
+
+      <a class="btn btn-primary" href="#" id="back-button" style="text-align:center; margin-right: 10px;">Back</a>
+  </div>
 </nav>
 {% endif %}
 

@@ -15,9 +15,33 @@
         </div>
         {% endfor %}
         {% endif %}
-<h3>Context base analysis.</h3>
-<h4>Add statements to see accuracy based on context of statements.</h4>
-<hr>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var backButton = document.querySelector('#back-button');
+                backButton.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    window.history.back();
+                });
+            });
+        </script>
+        <br>
+        <div class="container">
+            <div class="row">
+              <div class="col-md-5">
+                <h3>Context base analysis.</h3>
+                <h4>Add statements to see accuracy based on context of statements.</h4>
+              </div>
+              <div class="col-md-4">
+              </div>
+              <div class="col-md-3">
+                <a class="btn btn-primary btn-lg" href="#" id="back-button">Back</a>
+                <hr>
+              </div>
+            </div>
+            <hr>
+        </div>
+
         <form action="{% url 'testresultfunc'  %}">
             <div class="form-group">
                 <h6 style="margin-top: 5px;text-align: center;">This statement is consider as predefine answer from teacher.</h6>

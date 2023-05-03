@@ -33,8 +33,18 @@
           <li>Click <span class="text-success">Stop</span> to stop video recording</li>
           <li>Click <span class="text-success">Submit</span> to submit your video assessment</li>
         </ol>
-        <div class="alert alert-secondary" role="alert">
-          Kindly record your as : <span style="color: blue;">Option A is Correct. </span> (Example)
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-md-4"><button class="btn btn-primary btn-lg btn-block"
+              style=" margin-top: 5px; margin-bottom: 5px;" id="start">Start</button></div>
+          <div class="col-md-4"><button class="btn btn-primary btn-lg btn-block"
+              style=" margin-top: 5px; margin-bottom: 5px;" id="record" disabled>Record</button></div>
+          <div class="col-md-4"><button class="btn btn-primary btn-lg btn-block"
+              style=" margin-top: 5px; margin-bottom: 5px;" id="upload" disabled>Submit</button></div>
+          <div style="visibility: hidden;">
+            <label for="vehicle1" style="visibility: hidden;">Echo cancellation:</label>
+            <input type="checkbox" style="visibility: hidden;" id="echoCancellation"><br>
+          </div>
+          <hr>
         </div>
       </div>
       <div class="col-md-6">
@@ -46,8 +56,8 @@
     </div>
     <hr>
     <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-md-6"></div>
-      <div class="col-md-6">
+
+      <div class="col-md-12">
         <div class="row">
           <div class="col">
             <button class="btn btn-primary btn-lg btn-block" id="nextBtn" disabled>Next Question</button>
@@ -59,19 +69,7 @@
     </div>
     <hr>
     <!-- Action View  -->
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-md-4"><button class="btn btn-primary btn-lg btn-block"
-          style=" margin-top: 5px; margin-bottom: 5px;" id="start">Start</button></div>
-      <div class="col-md-4"><button class="btn btn-primary btn-lg btn-block"
-          style=" margin-top: 5px; margin-bottom: 5px;" id="record" disabled>Record</button></div>
-      <div class="col-md-4"><button class="btn btn-primary btn-lg btn-block"
-          style=" margin-top: 5px; margin-bottom: 5px;" id="upload" disabled>Submit</button></div>
-      <div style="visibility: hidden;">
-        <label for="vehicle1" style="visibility: hidden;">Echo cancellation:</label>
-        <input type="checkbox" style="visibility: hidden;" id="echoCancellation"><br>
-      </div>
-      <hr>
-    </div>
+
     <div class="row d-flex justify-content-center align-items-center h-100">
       <a class="btn btn-danger btn-lg" id="exit" href="{% url 'feedback' %}" role="button"
         style="visibility: hidden; margin-top: 5px; margin-bottom: 5px; margin-left: 5px; margin-right: 5px; width: 100%;">Exit

@@ -8,12 +8,16 @@ from django.contrib.auth import authenticate, login, logout
 
 def home (request):
 	if request.user.is_authenticated:
+		if request.user.is_staff:
+			return redirect('dashboard')
 		return redirect('afterlogin')
 	else:
 		return render(request,'index.html')
 
 def registerPage(request):
 	if request.user.is_authenticated:
+		if request.user.is_staff:
+			return redirect('dashboard')
 		return redirect('welcome')
 	else:
 		form = UserRegistrationForm()
@@ -32,6 +36,8 @@ def registerPage(request):
 	
 def loginPage(request):
 	if request.user.is_authenticated:
+		if request.user.is_staff:
+			return redirect('dashboard')
 		return redirect('welcome')
 	else:
 		if request.method == 'POST':
@@ -42,6 +48,8 @@ def loginPage(request):
 
 			if user is not None:
 				login(request, user)
+				if request.user.is_staff:
+					return redirect('dashboard')
 				return redirect('afterlogin')
 			else:
 				messages.warning(request, 'Incorrect Credentials ')

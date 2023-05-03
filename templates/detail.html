@@ -2,6 +2,15 @@
 {% load static %}
 
 {% block content %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var backButton = document.querySelector('#back-button');
+        backButton.addEventListener('click', function (event) {
+            event.preventDefault();
+            window.history.back();
+        });
+    });
+</script>
 <section>
     {% if messages %}
     {% for message in messages %}
@@ -16,6 +25,22 @@
     {% endfor %}
     {% endif %}
     {% for item in data %}
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <h5>User Name: {{ item.user_name }}</h5>
+            </div>
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-3">
+                <a class="btn btn-primary btn-lg" href="#" id="back-button">Back</a>
+                <hr>
+            </div>
+        </div>
+        <hr>
+    </div>
+
     <div class="container h-100" style="margin-top: 5px;">
         <div class="row">
             <div class="col-md-5">
@@ -25,28 +50,39 @@
             </div>
             <div class="col-md-7">
                 <row>
-                    <h5>User Name: {{ item.user_name }}</h5>
                     <p> Question : {{ item.question_id.quostion }}</p>
                     <p> Correct Answer is : {{ item.question_id.correctanswer }}</p>
                     <h4>Answer from video which is submitted.</h4>
                     {% if item.trasnscript %}
                     <p class="text-wrap text-break">"{{ item.trasnscript }}"</p>
+                    <row>
+                        <a href="{% url 'generate_result' ansId=item.ansId %}"
+                            class="btn btn-primary btn-block">Generate
+                            result</a>
+                        <div class="card-header" style="margin-top: 5px;text-align: center;">
+                            Accuracy of Answer is: {{ item.answer_accurecy }} %
+                            Featured
+                        </div>
+                        <br>
+                    </row>
                     {% else %}
                     <p>"Trasnscript is not yet genereted"</p>
                     <a href="{% url 'generate_transcript' ansId=item.ansId %}"
                         class="btn btn-primary btn-block">Generate
                         Trascript</a>
+                    <row>
+                        <a href="{% url 'generate_result' ansId=item.ansId %}" class="btn btn-primary btn-block" style="display: none
+                                ;">Generate
+                            result</a>
+                        <div class="card-header" style="margin-top: 5px;text-align: center;">
+                            Accuracy of Answer is: {{ item.answer_accurecy }} %
+                            Featured
+                        </div>
+                    </row>
                     {% endif %}
                 </row>
                 <hr>
-                <row>
-                <a href="{% url 'generate_result' ansId=item.ansId %}" class="btn btn-primary btn-block">Generate
-                    result</a>
-                    <div class="card-header" style="margin-top: 5px;text-align: center;">
-                        Accuracy of Answer is: {{ item.answer_accurecy }} %
-                        Featured
-                    </div>
-                </row>
+
 
             </div>
         </div>
