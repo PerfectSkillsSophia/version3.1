@@ -30,11 +30,25 @@
                   <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Welcome to Virtual Interview</p>
   
                   <form>
-                    <label for="username">Enter assessment link!:</label><br>
-                    <input  class="form-control" type="text" id="inputURL" name="inputURL" value=""><br><hr>
-                    <input class="btn btn-primary btn-lg btn-block" type="button" value="Proceed" OnClick="buttonClick()" />
-                </form>
-  
+                    <label for="inputURL">Enter assessment link:</label><br>
+                    <p><small>Make sure to CLICK on Proceed button to continue.</small></p>
+                    <input class="form-control" type="text" id="inputURL" name="inputURL" value="" onkeyup="checkEnter(event)"><br><hr>
+                    <input class="btn btn-primary btn-lg btn-block" type="button" value="Proceed" onclick="buttonClick()" />
+                  </form>
+                  
+                  <script language="javascript" type="text/javascript">
+                    function buttonClick() {
+                      var url = document.getElementById("inputURL").value;
+                      window.location = url;
+                    }
+                  
+                    function checkEnter(event) {
+                      if (event.key === "Enter") {
+                        buttonClick();
+                        event.preventDefault(); // Prevent form submission
+                      }
+                    }
+                  </script>
                 </div>
                 <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
   
@@ -51,11 +65,6 @@
   </section>
 
     {% endif %}
-    <script language="javascript" type="text/javascript">
-        function buttonClick() {
-            var url = document.getElementById("inputURL").value;
-            window.location = url;
-        }
-    </script>
+
 
     {% endblock %}

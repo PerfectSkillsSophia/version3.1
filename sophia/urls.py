@@ -23,6 +23,10 @@ from administration import urls as adminurl
 from django.conf.urls.static import static
 from django.conf import settings
 from django.views.static import serve
+from django.views.defaults import page_not_found, server_error
+
+handler404 = page_not_found
+handler500 = server_error
 
 admin.site.site_header = "Sophia Admin"
 admin.site.site_title = "Sophia Portal"
@@ -35,6 +39,7 @@ urlpatterns = [
     path('user/', include(accurl)),
     path('assessments/', include(assurl)),
     path('administration/', include(adminurl)),
+
     
     re_path(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}), 
     re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
