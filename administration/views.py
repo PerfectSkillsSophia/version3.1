@@ -32,7 +32,7 @@ def allAnswer(request):
 def detail_view(request, user_name, assessment_name,identi):
     url = settings. MEDIA_URL
     data = videoAns.objects.filter(user_name=user_name, assessment_name=assessment_name ,identi=identi)
-    return render(request, 'detail.html', {'data': data , 'url': url,})    
+    return render(request, 'detail.html', {'data': data , 'url': url,'user_name':user_name})    
     
 @staff_member_required
 @login_required(login_url='login')

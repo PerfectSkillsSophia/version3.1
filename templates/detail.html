@@ -24,12 +24,12 @@
     </div>
     {% endfor %}
     {% endif %}
-    {% for item in data %}
+
     <br>
     <div class="container">
         <div class="row">
             <div class="col-md-5">
-                <h5>User Name: {{ item.user_name }}</h5>
+                <h5>User Name: {{ user_name }}</h5>
             </div>
             <div class="col-md-4">
             </div>
@@ -41,18 +41,22 @@
         <hr>
     </div>
 
+
+    {% for item in data %}
+
     <div class="container h-100" style="margin-top: 5px;">
         <div class="row">
             <div class="col-md-5">
-                <video width="100%" height="100%" controls>
+                <video width="100%" height="60%" controls>
                     <source src="{{ url }}{{ item.videoAns }}" type="video/webm">
                 </video>
             </div>
             <div class="col-md-7">
                 <row>
-                    <p> Question : {{ item.question_id.quostion }}</p>
-                    <p> Correct Answer is : {{ item.question_id.correctanswer }}</p>
-                    <h4>Answer from video which is submitted.</h4>
+                    <p> <span style="font-weight: bold;"> Question {{ forloop.counter }} : </span></Question>
+                        {{ item.question_id.quostion }}</p>
+                    <p> <span style="font-weight: bold;">Stored Answer : </span>{{ item.question_id.correctanswer }}</p>
+                    <p> <span style="font-weight: bold;">Recorded Answer :</span></p>
                     {% if item.trasnscript %}
                     <p class="text-wrap text-break">"{{ item.trasnscript }}"</p>
                     <row>
@@ -61,7 +65,7 @@
                             result</a>
                         <div class="card-header" style="margin-top: 5px;text-align: center;">
                             Accuracy of Answer is: {{ item.answer_accurecy }} %
-                            Featured
+
                         </div>
                         <br>
                     </row>
@@ -76,7 +80,7 @@
                             result</a>
                         <div class="card-header" style="margin-top: 5px;text-align: center;">
                             Accuracy of Answer is: {{ item.answer_accurecy }} %
-                            Featured
+
                         </div>
                     </row>
                     {% endif %}
@@ -89,6 +93,8 @@
 
     </div>
     {% endfor %}
+
+
 </section>
 
 
